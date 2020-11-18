@@ -1,7 +1,5 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, AbstractControl } from '@angular/forms';
-import { Subject } from 'rxjs/internal/Subject';
-import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { ErrorMessages, Patterns } from '../../../services/forms/utils';
 import { FormFactory } from '../../../services/forms/form.factory';
 import { UserForm } from '../../../services/forms/groups/user-form';
@@ -13,9 +11,8 @@ import { RegionsService } from '../../../services/domain/region-service/regions.
   selector: 'app-user-creation-form',
   templateUrl: './user-creation-form.component.html'
 })
-export class UserCreationFormComponent implements OnDestroy {
+export class UserCreationFormComponent {
 
-  private destroyed$ = new Subject(); // Subject to unsubscribe to all present Subscription at once
   usersForm: FormGroup;
   readonly errorMsg = ErrorMessages;
   readonly patterns = Patterns;
@@ -32,10 +29,6 @@ export class UserCreationFormComponent implements OnDestroy {
     private userService: UsersService,
     private regionsService: RegionsService) {
       this.init();
-  }
-
-  ngOnDestroy(): void {
-      this.destroyed$.next();
   }
 
   /**
@@ -55,7 +48,7 @@ export class UserCreationFormComponent implements OnDestroy {
    * & Building Form Group with FormFactory utils
    */
   private init(): void {
-    this.regionsService.getAll().pipe(takeUntil(this.destroyed$))
+    this.regionsService.getAll()
       .subscribe((regions) => this.regions = regions, err => {
         console.error(this.errorMsg.unreachableApi, err);
         this.forms.displayMessage(this.errorMsg.unreachableApi);
@@ -78,6 +71,6 @@ export class UserCreationFormComponent implements OnDestroy {
    * with form fields' value.
    */
   private CreateUser = (): UserInfos =>
-      new UserInfos(this.lastname.value, this.firstname.value, this.phone.value, this.region.value)
+      new UserInfos(this.lastname.value, this.firstname.value, this.phone.value, this.region.value.nom)
 
 }

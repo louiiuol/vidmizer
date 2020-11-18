@@ -18,11 +18,9 @@ export class RegionsService {
   constructor(private http: HttpClient) { }
 
   /**
-   * HTTP GET resquest for all regions
+   * HTTP GET request for all French regions
    * @return Une observable contenant une liste de régions en cas de succès
    */
-  getAll = (): Observable<Region[]> => {
-    return this.http.get<Region[]>((this.regionsUrl), this.jsonHeader);
-  }
+  getAll = (): Observable<Region[]> => this.http.get<Region[]>((this.regionsUrl), this.jsonHeader);
 
 }

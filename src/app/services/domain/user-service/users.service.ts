@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { UserInfos } from '../../../models/user-infos.model';
-import { UsersStore } from '../../utils/users.store';
 import { UsersPage } from '../../../models/users-pages.model';
 import { FormFactory } from '../../forms/form.factory';
 import { ErrorMessages, SuccessMessages } from '../../forms/utils';
+import { BehaviorSubject, Observable } from 'rxjs';
 /**
  * Buisiness Service providing tools to manages Users
  */
@@ -12,14 +12,15 @@ import { ErrorMessages, SuccessMessages } from '../../forms/utils';
 })
 export class UsersService {
 
-  private users: UsersPage;
   readonly errorMsg = ErrorMessages;
   readonly successMsg = SuccessMessages;
+  private readonly storeKey = 'vidmizer-users';
 
-  constructor(
-    private usersStore: UsersStore,
-    private forms: FormFactory) {
-    this.users = this.usersStore.hasUsers() ? this.usersStore.getUsers() : new UsersPage(0, true, []);
+  private readonly current = new BehaviorSubject<UserInfos[]>([]);
+  public users$: Observable<UserInfos[]> = this.current.asObservable();
+
+  constructor(private forms: FormFactory) {
+    this.current.next(this.hasUsers() ? this.getLocalUsers() : []);
   }
 
   /**
@@ -29,7 +30,7 @@ export class UsersService {
   addUser(user: UserInfos): boolean {
 
     // Find In localstorage the given user, filtering by firstname & lastname OR by phone number
-    const exist = this.usersStore.users?.items.find((current) => {
+    const exist = this.current.value.find((current) => {
       if (this.uniqueName(current, user)) {
         this.forms.displayMessage(this.errorMsg.uniqueName);
         return current;
@@ -41,17 +42,21 @@ export class UsersService {
 
     // If no one is found, we can add the user to localStorage and update all.
     if (!exist) {
-      this.users.items.push(user);
-      this.usersStore.setUsers(this.users.items);
-      this.users = this.usersStore.getUsers();
+      this.current.value.push(user);
+      this.current.next(this.setLocalUsers([...this.current.value]));
       this.forms.displayMessage(this.successMsg.add_user);
     }
     return !exist;
   }
 
-  // Pagination coming ..
-  getUsers(): UsersPage {
-    return this.users;
+  /**
+   * Removes given User from local storage and update current subject
+   */
+  removeUser(user: UserInfos): void {
+    const updated =
+      this.setLocalUsers(this.current.value.filter(current =>
+        current.phone !== user.phone));
+    this.current.next(updated);
   }
 
   /**
@@ -65,4 +70,23 @@ export class UsersService {
    */
   private uniquePhone = (current: UserInfos, user: UserInfos) =>
     current.phone === user.phone
+
+    hasUsers = (): boolean =>
+    !!window.localStorage.getItem(this.storeKey)
+
+  /**
+   * Retrieve local storage as custom Pagination object
+   */
+  private getLocalUsers = (): UserInfos[] =>
+    JSON.parse(window.localStorage.getItem(this.storeKey))
+
+  /**
+   * Update current local storage with given list of users
+   * @returns updated Users list
+   */
+  private setLocalUsers = (users: UserInfos[]): UserInfos[] => {
+    window.localStorage.setItem(this.storeKey, JSON.stringify(users));
+    return this.getLocalUsers();
+  }
+
 }

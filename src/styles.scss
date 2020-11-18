@@ -14,6 +14,12 @@ app-root {
     flex-flow: row wrap;
     place-content: center space-evenly ;
     overflow: hidden;
+    #users-table {
+      flex: 1;
+    }
+    #users-table, #users-form {
+      margin: 2rem;
+    }
 }
 
 body {

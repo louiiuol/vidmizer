@@ -1,3 +1,6 @@
+/**
+ * Global Error Messages
+ */
 export const ErrorMessages = {
   fields: [
       { type: 'required', message: 'Ce champ est requis !' },

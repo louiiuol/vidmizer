@@ -47,7 +47,7 @@ snack-bar-container { // Defines shared SnacbBar Global custom styles
     border: 1px solid currentColor;
 }
 
-.mat-card, .mat-dialog-container { // Defines custom styles for mat card & dialog,containing form
+.mat-card { // Defines custom styles for mat card containing form
     padding: 0 !important;
     border-radius: 10px !important;
     position: relative;
@@ -61,9 +61,6 @@ snack-bar-container { // Defines shared SnacbBar Global custom styles
         font-size: 1.8rem;
         line-height: 2.5rem;
         color: #FFFFFF !important;
-    }
-    .mat-tab-header-pagination {
-        display: none;
     }
     form {
         text-align: center;
@@ -99,13 +96,6 @@ snack-bar-container { // Defines shared SnacbBar Global custom styles
         }
     }
     p.legend { text-align: center; }
-    .mat-dialog-content { margin: 1rem 0 !important; }
-    #close-dialog {
-        position: absolute;
-        top: 1rem;
-        right: 1rem;
-        color: #FFFFFF;
-    }
     mat-dialog-actions, mat-card-actions {
         display: flex !important;
         justify-content: space-evenly !important;
@@ -118,4 +108,41 @@ snack-bar-container { // Defines shared SnacbBar Global custom styles
         margin-bottom: 1rem;
         margin-top: 1rem;
     }
+}
+
+#users-table {
+  .mat-elevation-z8 {
+    padding: 1rem;
+    background: white;
+  }
+  #filter {
+    background: white;
+    padding: 1rem;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+
+  td, th {
+    width: 25%;
+    padding: .5rem !important;
+    &:last-child { text-align: right; padding-right: 15px; }
+    &.legend { width: 100%; }
+  }
+  tr.legend {
+    td {
+      text-align: left;
+      font-style: italic;
+      color: #888
+    }
+  }
+  .mat-paginator-page-size-label {
+    min-width: 100px;
+  }
 }
