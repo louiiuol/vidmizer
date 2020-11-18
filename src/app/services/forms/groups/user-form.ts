@@ -1,6 +1,10 @@
-import { Validators, FormControl } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { Patterns } from '../utils/patterns';
 
+/**
+ * Form Group Models for User informations
+ * specify constraints like length, patterns ..
+ */
 export const UserForm = {
   lastname: [null, [
     Validators.required,

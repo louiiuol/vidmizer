@@ -6,4 +6,6 @@ export const ErrorMessages = {
       { type: 'pattern', message: 'Le format est invalide' }
   ],
   unreachableApi: 'Seems like server is down, try again later ... ',
+  uniqueName: 'Cette identité est déjà prise',
+  uniquePhone: 'Ce numéro est déjà associé'
 };

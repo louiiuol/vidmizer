@@ -15,9 +15,15 @@ export class FormFactory {
       this.fb = new FormBuilder();
     }
 
+  /**
+   * Returns an instance of Form Builder for custom Build
+   */
     builder = (): FormBuilder => this.fb;
 
-    displayMessage = (message: any): MatSnackBarRef<SimpleSnackBar> =>
+  /**
+   * Displays given message in snackBar (pop up notification)
+   */
+    displayMessage = (message: string): MatSnackBarRef<SimpleSnackBar> =>
       this.snackBar.open(message, 'close', { duration: 3000 })
 
 }

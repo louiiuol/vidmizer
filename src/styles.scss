@@ -12,7 +12,7 @@ app-root, body, app-home, app-profile, app-dashboard { height: 100%; width: 100%
 app-root {
     display: flex;
     flex-flow: row wrap;
-    place-content: start space-evenly ;
+    place-content: center space-evenly ;
     overflow: hidden;
 }
 
