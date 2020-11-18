@@ -17,9 +17,7 @@ app-root {
 }
 
 body {
-    background: linear-gradient(-45deg, #f178b1,#26cada);
-    background-size: 200% 200%;
-    animation: gradient 20s ease infinite;
+    background: #CCC;
 }
 
 @keyframes gradient {
@@ -28,27 +26,11 @@ body {
     100% {background-position: 0% 50%;}
 }
 
-/* FONTS IMPORT */
-@mixin font-face($name, $url, $weight, $style) {
-    @font-face {
-        font-family: $name;
-        src: url($url) format('truetype');
-        font-weight: $weight;
-        font-style: $style;
-    }
-}
-@include font-face('poppins', '../assets/fonts/poppins/Regular.ttf', normal, normal );
-@include font-face('poppins', '../assets/fonts/poppins/Regular-Italic.ttf', normal, italic );
-@include font-face('poppins', '../assets/fonts/poppins/Black.ttf', bold, normal );
-@include font-face('poppins', '../assets/fonts/poppins/Black-Italic.ttf', bold, italic );
-@include font-face('pacifico', '../assets/fonts/Pacifico.ttf', normal, normal );
-
 /* GLOBAL FONT STYLES */
-p, a, li, button, .mat-chip, .is-bold, strong, .is-italic, i, em { font-family: poppins, sans-serif !important; }
+p, a, li, button, .mat-chip, .is-bold, strong, .is-italic, i, em { font-family: Verdana, Tahoma, sans-serif !important; }
 p, a, li, button, .mat-chip { font-weight: normal !important; font-style: normal !important;}
 .is-bold, strong { font-weight: bold !important; }
 .is-italic, i, em { font-style: italic !important; }
-h1, h1 > *, h2:not(.empty), h2 > *, h3, h3 > *, h4, h5, h6, .is-pacifico, .mat-card-title { font-family: pacifico, sans-serif !important;}
 
 /* UTILITARY STYLES */
 .spaced {
@@ -57,7 +39,6 @@ h1, h1 > *, h2:not(.empty), h2 > *, h3, h3 > *, h4, h5, h6, .is-pacifico, .mat-c
     &-xs { padding: .65rem 1rem}
 }
 .legend { color: #AAA; font-style: italic; padding: .5rem;}
-.empty { padding: 1rem; color: #888; font-style: italic; text-align: center; font-family: 'poppins, sans-serif' !important;}
 hr.spacer { opacity: 0; height: 2rem; }
 .disabled { cursor: not-allowed;}
 .helped { cursor: help;}

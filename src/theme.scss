@@ -120,39 +120,3 @@ snack-bar-container { // Defines shared SnacbBar Global custom styles
         margin-top: 1rem;
     }
 }
-
-.mat-menu-panel { // Add margins to menus dropdown overlay
-    margin-top: .5rem !important;
-    .mat-menu-content:not(:empty) { // Defines custom style for content wrapper
-        max-width: 450px !important;
-        max-height: 250px !important;
-        overflow-x: auto;
-        text-align: center;
-    }
-}
-
-.mat-chip-list-wrapper{ justify-content: space-evenly !important; } // Fixing default Material behaviour
-.mat-fab .mat-button-wrapper { padding: 4px 0 !important; } // Fixing default Material behaviour
-.mat-form-field-appearance-outline .mat-form-field-prefix, .mat-form-field-appearance-outline .mat-form-field-suffix { top: .5em !important; }
-mat-slide-toggle label { flex: 0 !important;}
-.mat-button-wrapper { display: block; }
-.mat-step-icon-content { display: flex; }
-.mat-slide-toggle.reverse {
-    label {
-        flex-direction: row-reverse;
-    }
-}
-.mat-card-header-text { width: 100%;}
-.member-info .mat-chip-list-wrapper { justify-content: space-between !important;}
-#members-update #chips-wrap {
-    width: 100%;
-    max-height: 135px;
-    overflow-y: scroll;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-}
-app-jar-create {
-    max-width: 630px;
-    display: block;
-}
