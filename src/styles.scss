@@ -23,13 +23,7 @@ app-root {
 }
 
 body {
-    background: #CCC;
-}
-
-@keyframes gradient {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
+    background: #DDD;
 }
 
 /* GLOBAL FONT STYLES */
@@ -47,14 +41,4 @@ h1 {
 }
 
 /* UTILITARY STYLES */
-.spaced {
-    padding: 1.25rem 2rem;
-    &-lg { padding: 2.5rem 4rem}
-    &-xs { padding: .65rem 1rem}
-}
-.legend { color: #AAA; font-style: italic; padding: .5rem;}
-hr.spacer { opacity: 0; height: 2rem; }
-.disabled { cursor: not-allowed;}
-.helped { cursor: help;}
 .pointed { cursor: pointer;}
-.centered { text-align: center;}
