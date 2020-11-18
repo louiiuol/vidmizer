@@ -1,0 +1,47 @@
+<mat-card class='has-form'>
+  <h3 class='header'>Ajouter un nouvel utilisateur</h3>
+  <form id='users-form' [formGroup]='usersForm'>
+
+    <section class='wrapped'>
+      <mat-form-field style='width:70%' appearance='outline' color='primary' >
+        <mat-label>Prénom</mat-label>
+        <input matInput formControlName='lastname' maxlength='20' type='text' required >
+        <mat-error *ngFor='let validation of errorMsg.fields'>
+          <mat-error *ngIf='patterns.isValid(lastname, validation)'>{{validation.message}}</mat-error>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field style='width:70%' appearance='outline' color='primary' >
+        <mat-label>Nom</mat-label>
+        <input matInput formControlName='firstname' maxlength='20' type='text' required >
+        <mat-error *ngFor='let validation of errorMsg.fields'>
+          <mat-error *ngIf='patterns.isValid(firstname, validation)'>{{validation.message}}</mat-error>
+        </mat-error>
+      </mat-form-field>
+    </section>
+
+      <mat-form-field style='width:70%' appearance='outline' color='primary' >
+        <mat-label>Téléphone</mat-label>
+        <input matInput formControlName='phone' placeholder="téléphone" maxlength='20' type='text' required >
+        <mat-error *ngFor='let validation of errorMsg.fields'>
+          <mat-error *ngIf='patterns.isValid(phone, validation)'>{{validation.message}}</mat-error>
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Région</mat-label>
+        <mat-select formControlName="region" required>
+            <mat-option *ngFor="let region of regions" [value]="region"> {{region.nom}} </mat-option>
+        </mat-select>
+        <mat-error *ngFor="let validation of errorMsg.fields">
+          <mat-error *ngIf='patterns.isValid(region, validation)'>{{validation.message}}</mat-error>
+        </mat-error>
+    </mat-form-field>
+
+    <footer>
+      <button type='submit' mat-stroked-button color='primary' (click)='reset()' >Réinitialiser</button>
+      <button [disabled]='usersForm.invalid' color='primary' mat-raised-button (click)='addUser()'>Ajouter</button>
+    </footer>
+
+  </form>
+</mat-card>
